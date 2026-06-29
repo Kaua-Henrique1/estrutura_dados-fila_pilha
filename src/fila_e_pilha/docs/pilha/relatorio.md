@@ -1,155 +1,315 @@
-# Relatório Acadêmico: Fundamentos da Estrutura de Dados Pilha (Stack)
+# Relatório – Aplicação da Estrutura de Dados Pilha
 
-## 1. Funcionamento Teórico da Pilha
-
-A estrutura de dados **Pilha (Stack)** opera estritamente sob o princípio **LIFO (Last-In, First-Out)**, ou seja, **Último a Entrar, Primeiro a Sair**.
-
-O seu funcionamento é semelhante a um corredor de estacionamento de via única sem saída: os novos veículos entram sempre pelo mesmo lado (a entrada/saída do corredor) e a remoção ocorre obrigatoriamente por esse mesmo lado, obrigando a retirar o último veículo que entrou para liberar o caminho para os restantes.
+## Tema
+Aplicação da Estrutura de Dados Pilha
 
 ---
 
-## Ciclo de Vida e Estados da Pilha
+# 1. Introdução
 
-Para compreender a dinâmica da estrutura, simulamos uma pilha (estacionamento) com capacidade para três elementos.
+As estruturas de dados são fundamentais para o desenvolvimento de sistemas computacionais, pois permitem organizar e manipular informações de maneira eficiente. Entre elas, a estrutura **Pilha (Stack)** destaca-se por seguir o princípio **LIFO (Last In, First Out)**, em que o último elemento inserido é o primeiro a ser removido.
 
-### Configuração Inicial
-
-- **Capacidade:** Dinâmica (lista expansível via `ArrayList`). Para fins de demonstração visual, simularemos a entrada de 3 veículos.
-- **Estado Inicial:** `[ vazio ]`
+Neste trabalho foi desenvolvida uma aplicação que simula um **estacionamento de vaga única**, utilizando a estrutura de dados Pilha para controlar a entrada e saída dos veículos.
 
 ---
 
-## 2. Operações Fundamentais da Pilha
+# 2. Aplicação Escolhida
 
-### A. Inserção (Push / `push`)
+A aplicação consiste em um sistema simples de gerenciamento de um estacionamento onde os carros ficam estacionados um atrás do outro.
 
-Os elementos são inseridos sempre no topo da pilha (junto à saída do estacionamento).
+Nesse tipo de estacionamento, somente o último veículo que entrou pode sair imediatamente, tornando a Pilha a estrutura ideal para representar essa situação.
 
-#### Inserção 1
-Inserir `Carro A`
+Cada veículo possui duas informações:
 
-```text
-[Carro A]
+- Modelo
+- Placa
+
+O sistema permite ao usuário realizar as seguintes operações:
+
+- Adicionar veículo;
+- Remover veículo;
+- Consultar o último veículo estacionado;
+- Verificar a quantidade de veículos;
+- Verificar se o estacionamento está vazio;
+- Exibir todos os veículos.
+
+---
+
+# 3. Justificativa da Estrutura Utilizada
+
+A estrutura **Pilha** foi escolhida porque seu funcionamento corresponde exatamente ao comportamento de um estacionamento de vaga única.
+
+A pilha segue a política **LIFO (Last In, First Out)**:
+
+> O último veículo que entra é o primeiro que pode sair.
+
+Cada método da estrutura possui uma aplicação prática no sistema:
+
+| Método | Função no sistema |
+|---------|-------------------|
+| push() | Adiciona um carro ao estacionamento |
+| pop() | Remove o último carro estacionado |
+| top() | Mostra qual carro está na saída |
+| size() | Informa quantos carros existem |
+| isEmpty() | Verifica se há veículos estacionados |
+
+---
+
+# 4. Funcionamento do Sistema
+
+O projeto foi dividido em três classes.
+
+## Carro.java
+
+Representa um veículo, armazenando:
+
+- Modelo
+- Placa
+
+---
+
+## Pilha.java
+
+Responsável por implementar a estrutura Pilha utilizando um `ArrayList`.
+
+Ela contém os métodos principais:
+
+- push()
+- pop()
+- top()
+- size()
+- isEmpty()
+
+---
+
+## SistemaEstacionamento.java
+
+Classe principal do programa.
+
+Ela apresenta um menu interativo onde o usuário escolhe qual operação deseja realizar sobre a pilha.
+
+---
+
+# 5. Simulação da Execução
+
+## Estado inicial
+
 ```
 
-O fundo e o topo apontam para o mesmo elemento.
+Estacionamento vazio.
 
-#### Inserção 2
-Inserir `Carro B`
-
-```text
-[Carro A, Carro B]
-```
-
-#### Inserção 3
-Inserir `Carro C`
-
-```text
-[Carro A, Carro B, Carro C]
-```
-
-Estado da estrutura:
-
-```text
-FUNDO                              TOPO
-[Carro A] ──> [Carro B] ──> [Carro C]
-                               │
-                               ▼
-                        (Próximo a sair)
-                        (Último inserido)
 ```
 
 ---
 
-### B. Inspeção (Top / `top`)
+## Inserindo veículos
 
-Permite visualizar o elemento localizado no topo da pilha sem o remover.
+Usuário escolhe:
 
-#### Execução
-
-```java
-estacionamento.top();
 ```
 
-#### Resultado
+1 - Adicionar veículo
 
-```text
-Carro C
 ```
 
-O estado da pilha permanece inalterado:
+Entrada:
 
-```text
-[Carro A, Carro B, Carro C]
+```
+
+Modelo: Gol
+Placa: ABC-1234
+
+```
+
+Resultado:
+
+```
+
+Veículo adicionado com sucesso.
+
+```
+
+Pilha:
+
+```
+
+Topo
+┌──────────────┐
+│ Gol          │
+└──────────────┘
+
 ```
 
 ---
 
-### C. Remoção (Pop / `pop`)
+Usuário adiciona outro veículo.
 
-A remoção ocorre exclusivamente no topo da pilha.
-
-#### Remoção 1
-
-```java
-estacionamento.pop();
 ```
 
-Elemento removido:
+Modelo: Onix
+Placa: DEF-5678
 
-```text
-Carro C
 ```
 
-Novo estado:
+Pilha:
 
-```text
-[Carro A, Carro B]
 ```
 
-O novo topo passa a ser o Carro B.
+Topo
+┌──────────────┐
+│ Onix         │
+├──────────────┤
+│ Gol          │
+└──────────────┘
 
-#### Remoção 2
-
-```java
-estacionamento.pop();
 ```
-
-Elemento removido:
-
-```text
-Carro B
-```
-
-Novo estado:
-
-```text
-[Carro A]
-```
-
-Agora o fundo e o topo apontam novamente para o mesmo elemento.
 
 ---
 
-## 3. Considerações Técnicas
+Usuário adiciona mais um veículo.
 
-Quando implementada através de uma lista dinâmica (`ArrayList`) encapsulada, as operações de inserção e remoção no final da lista possuem complexidade constante **O(1)**.
+```
 
-Isso ocorre porque a estrutura manipula apenas os índices e referências do último elemento inserido, evitando deslocamentos de dados na memória. Para o projeto, optou-se por construir a estrutura do zero, demonstrando o domínio sobre a mecânica da Pilha sem depender de bibliotecas nativas, seguindo a lógica apresentada na disciplina.
+Modelo: HB20
+Placa: GHI-9012
 
-### Vantagens
+```
 
-- Inserção e remoção extremamente rápidas.
-- Controle natural de processos reversos (desfazer ações).
-- Solução perfeita para problemas com bloqueios físicos e dependência de ordem reversa, como o Estacionamento de Via Única.
+Pilha:
 
-### Desvantagens
+```
 
-- O acesso direto a elementos intermediários ou da base não é eficiente.
-- A busca exige o desempilhamento sequencial dos elementos.
+Topo
+┌──────────────┐
+│ HB20         │
+├──────────────┤
+│ Onix         │
+├──────────────┤
+│ Gol          │
+└──────────────┘
+
+```
 
 ---
 
-## Conclusão
+## Consultando o topo
 
-A estrutura de dados Pilha é a solução incontestável para cenários em que a ordem de processamento deve respeitar um retrocesso exato dos passos anteriores. O seu modelo LIFO garante que o último elemento retido no sistema seja o primeiro a ser acessado, tornando-a numa representação fiel e eficiente da limitação física encontrada num estacionamento em formato de corredor sem saída.
+Usuário seleciona:
+
+```
+
+3 - Consultar último veículo
+
+```
+
+Saída:
+
+```
+
+Último veículo estacionado:
+
+Modelo: HB20
+Placa: GHI-9012
+
+```
+
+---
+
+## Removendo um veículo
+
+Usuário escolhe:
+
+```
+
+2 - Remover veículo
+
+```
+
+Resultado:
+
+```
+
+Veículo removido:
+
+Modelo: HB20
+Placa: GHI-9012
+
+```
+
+Nova pilha:
+
+```
+
+Topo
+┌──────────────┐
+│ Onix         │
+├──────────────┤
+│ Gol          │
+└──────────────┘
+
+```
+
+---
+
+## Consultando a quantidade
+
+Usuário escolhe:
+
+```
+
+4 - Quantidade de veículos
+
+```
+
+Saída:
+
+```
+
+Quantidade: 2
+
+```
+
+---
+
+## Verificando se está vazio
+
+Usuário escolhe:
+
+```
+
+5 - Estacionamento vazio?
+
+```
+
+Saída:
+
+```
+
+Não.
+
+Existem veículos estacionados.
+
+```
+
+---
+
+## Exibindo todos os veículos
+
+Usuário escolhe:
+
+```
+
+6 - Listar veículos
+
+```
+
+Saída:
+
+```
+
+Onix - DEF-5678
+Gol - ABC-1234
+
+```
+
+---
