@@ -19,8 +19,12 @@ As operações de fila demonstradas são:
 
 A análise detalhada sobre o comportamento da fila, simulações de cenários e o relatório do projeto podem ser consultados nos links abaixo:
 
+FILA:
 * [Relatório de Desenvolvimento](./src/fila_e_pilha/docs/fila/relatorio.md)
-* [Simulação da Fila de Tarefas](./src/fila_e_pilha/docs/fila/simulation.md) *(Clique aqui para ver a documentação da fila)*
+* [Simulação da Fila de Tarefas](./src/fila_e_pilha/docs/fila/simulation.md)
+
+PILHA: 
+* [Relatório de Pilha](./src/fila_e_pilha/docs/pilha/relatorio.md)
 
 ---
 
@@ -44,15 +48,24 @@ Para compilar e rodar este projeto, você precisará apenas do ambiente básico 
 1. Clone o repositório:
    ```bash
    git clone https://github.com/Kaua-Henrique1/estrutura_dados-fila_pilha.git
+   
+   cd estrutura_dados-fila_pilha
     ```
 
 2. Compile todos os arquivos Java a partir da pasta raiz:
    ```bash
-   javac src/fila_e_pilha/fila/domain/*.java src/fila_e_pilha/fila/service/*.java src/fila_e_pilha/fila/ui/*.java src/fila_e_pilha/fila/GerenciadorTarefas.java -d out/
+   javac -d out src/fila_e_pilha/fila/domain/*.java src/fila_e_pilha/fila/service/*.java src/fila_e_pilha/fila/ui/*.java src/fila_e_pilha/fila/GerenciadorTarefas.java src/fila_e_pilha/pilha/*.java
    ```
 
 3. Execute o programa:
+   > Para rodar o Gerenciador de Tarefas (Fila):
 
    ```bash
    java -cp out fila_e_pilha.fila.GerenciadorTarefas
+   ```
+   
+   > Para rodar o Sistema de Estacionamento (Pilha):
+   
+   ```bash
+    java -cp out fila_e_pilha.pilha.SistemaEstacionamento
    ```
